@@ -6,17 +6,22 @@ const app = express();
 
 app.set('view engine', 'pug');
 app.set('views', __dirname + '/views');
-app.use('/public', express.static(__dirname + '/public'));
-app.get('/', (_, res) => res.render('home'));
+app.use('/public', express.static('public'));
+app.get('/', (_, res) => res.render('base'));
 app.get('/*', (_, res) => res.redirect('/'));
 
 const server = http.createServer(app);
 const io = SocketIO(server);
 
 io.on('connection', socket => {
-  socket.on('enterRoom', (msg, done) => {
-    console.log(msg);
-    done('test');
+  socket.onAny(event => {
+    console.log(`Socket Event: ${event}`);
+  });
+
+  socket.on('enterRoom', (roomName, showRoom) => {
+    socket.join('roomName');
+    showRoom();
+    socket.to(roomName).emit('welcome');
   });
 });
 
