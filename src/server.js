@@ -14,17 +14,32 @@ app.get('/*', (_, res) => res.redirect('/404'));
 const server = http.createServer(app);
 const io = SocketIO(server);
 
-// io.on('connection', socket => {
-//   socket.onAny(event => {
-//     console.log(`Socket Event: ${event}`);
-//   });
+io.on('connection', (socket) => {
+  socket['nickname'] = 'Anonymous';
 
-//   socket.on('enterRoom', (roomName, showRoom) => {
-//     socket.join('roomName');
-//     showRoom();
-//     socket.to(roomName).emit('welcome');
-//   });
-// });
+  socket.onAny((event) => {
+    console.log(`Socket Event: ${event}`);
+  });
+
+  socket.on('enter-room', (roomName, showRoom) => {
+    socket.join(roomName);
+    showRoom();
+  });
+
+  socket.on('save-nickname', (nickname, roomName, showMessage) => {
+    socket.nickname = nickname;
+    showMessage();
+    socket
+      .to(roomName)
+      .emit('welcome-message', `${socket.nickname} has joined.`);
+  });
+
+  socket.on('send-message', (message, addMessage) => {
+    const msg = `${socket.nickname}: ${message}`;
+
+    addMessage(msg);
+  });
+});
 
 // ws code
 // import WebSocket from 'ws';
