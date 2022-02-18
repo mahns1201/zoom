@@ -34,10 +34,10 @@ io.on('connection', (socket) => {
       .emit('welcome-message', `${socket.nickname} has joined.`);
   });
 
-  socket.on('send-message', (message, addMessage) => {
-    const msg = `${socket.nickname}: ${message}`;
+  socket.on('send-message', (message, roomName, addMessage) => {
+    addMessage(`You: ${message}`);
 
-    addMessage(msg);
+    socket.to(roomName).emit('new-message', `${socket.nickname}: msg`);
   });
 });
 

@@ -48,12 +48,16 @@ function handelSendMessage(event) {
 
   const messageFormInput = messageForm.querySelector('input');
 
-  socket.emit('send-message', messageFormInput.value, addMessage);
+  socket.emit('send-message', messageFormInput.value, roomName, addMessage);
 }
 
 // socket client api
 socket.on('welcome-message', (msg) => {
   addMessage(`[Announce] ${msg}`);
+});
+
+socket.on('new-message', (msg) => {
+  addMessage(msg);
 });
 
 // add event listener
