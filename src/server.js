@@ -7,23 +7,23 @@ const app = express();
 app.set('view engine', 'pug');
 app.set('views', __dirname + '/views');
 app.use('/public', express.static('public'));
-app.get('/', (_, res) => res.render('base'));
+app.get('/', (_, res) => res.render('home'));
 app.get('/*', (_, res) => res.redirect('/'));
 
 const server = http.createServer(app);
 const io = SocketIO(server);
 
-io.on('connection', socket => {
-  socket.onAny(event => {
-    console.log(`Socket Event: ${event}`);
-  });
+// io.on('connection', socket => {
+//   socket.onAny(event => {
+//     console.log(`Socket Event: ${event}`);
+//   });
 
-  socket.on('enterRoom', (roomName, showRoom) => {
-    socket.join('roomName');
-    showRoom();
-    socket.to(roomName).emit('welcome');
-  });
-});
+//   socket.on('enterRoom', (roomName, showRoom) => {
+//     socket.join('roomName');
+//     showRoom();
+//     socket.to(roomName).emit('welcome');
+//   });
+// });
 
 // ws code
 // import WebSocket from 'ws';

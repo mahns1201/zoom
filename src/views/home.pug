@@ -1,26 +1,9 @@
-doctype html
-html(lang="en")
-  head
-    meta(charset="UTF-8")
-    meta(http-equiv="X-UA-Compatible", content="IE=edge")
-    meta(name="viewport", content="width=device-width, initial-scale=1.0")
-    title Zoom
-  body
-    header
-      h1 Zoom
-    main
-      div#welcome
-        form
-          input(type="text", placeholder='Room Name', required)
-          button Enter Room
+extends base.pug
 
-      div#room
-        h3
-        ul
-        form
-          input(type="text", placeholder='Message', required)
-          button Send
+block content
+  header
+    h1 Zoom
+  main
 
-
-    script(src="/socket.io/socket.io.js")
-    script(src="/public/js/app.js")
+  script(src="/socket.io/socket.io.js")
+  script(src="/public/js/app.js")
