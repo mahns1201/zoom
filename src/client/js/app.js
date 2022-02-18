@@ -49,6 +49,7 @@ function handelSendMessage(event) {
   const messageFormInput = messageForm.querySelector('input');
 
   socket.emit('send-message', messageFormInput.value, roomName, addMessage);
+  messageFormInput.value = '';
 }
 
 // socket client api

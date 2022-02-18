@@ -52,8 +52,7 @@ io.on('connection', (socket) => {
 
   socket.on('send-message', (message, roomName, addMessage) => {
     addMessage(`You: ${message}`);
-
-    socket.to(roomName).emit('new-message', `${socket.nickname}: msg`);
+    socket.to(roomName).emit('new-message', `${socket.nickname}: ${message}`);
   });
 });
 
