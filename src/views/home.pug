@@ -1,9 +1,13 @@
 extends base.pug
 
 block content
-  header
-    h1 Zoom
+  //- header
   main
+    form#enter
+      input(type="text", placeholder="Enter Room", required)
+      button Enter
+
+
+
 
   script(src="/socket.io/socket.io.js")
-  script(src="/public/js/app.js")

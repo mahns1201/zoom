@@ -8,7 +8,8 @@ app.set('view engine', 'pug');
 app.set('views', __dirname + '/views');
 app.use('/public', express.static('public'));
 app.get('/', (_, res) => res.render('home'));
-app.get('/*', (_, res) => res.redirect('/'));
+app.get('/404', (_, res) => res.render('NotFound'));
+app.get('/*', (_, res) => res.redirect('/404'));
 
 const server = http.createServer(app);
 const io = SocketIO(server);
