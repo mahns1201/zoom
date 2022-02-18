@@ -14,8 +14,10 @@ app.get('/*', (_, res) => res.redirect('/404'));
 const server = http.createServer(app);
 const io = SocketIO(server);
 
+const DEFAULT_NICKNAME = 'Anonymous';
+
 io.on('connection', (socket) => {
-  socket['nickname'] = 'Anonymous';
+  socket['nickname'] = DEFAULT_NICKNAME;
 
   socket.onAny((event) => {
     console.log(`Socket Event: ${event}`);
@@ -27,11 +29,25 @@ io.on('connection', (socket) => {
   });
 
   socket.on('save-nickname', (nickname, roomName, showMessage) => {
-    socket.nickname = nickname;
-    showMessage();
-    socket
-      .to(roomName)
-      .emit('welcome-message', `${socket.nickname} has joined.`);
+    console.log(socket.nickname, DEFAULT_NICKNAME);
+
+    if (socket.nickname === DEFAULT_NICKNAME) {
+      socket.nickname = nickname;
+
+      showMessage();
+      socket
+        .to(roomName)
+        .emit('announce-message', `${socket.nickname} has joined.`);
+    } else {
+      socket
+        .to(roomName)
+        .emit(
+          'announce-message',
+          `${socket.nickname} has changed nickname to ${nickname}`,
+        );
+
+      socket.nickname = nickname;
+    }
   });
 
   socket.on('send-message', (message, roomName, addMessage) => {

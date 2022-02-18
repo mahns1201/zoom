@@ -52,7 +52,7 @@ function handelSendMessage(event) {
 }
 
 // socket client api
-socket.on('welcome-message', (msg) => {
+socket.on('announce-message', (msg) => {
   addMessage(`[Announce] ${msg}`);
 });
 
