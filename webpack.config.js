@@ -6,7 +6,8 @@ const BASE_JS = './src/client/js/';
 module.exports = {
   entry: {
     main: BASE_JS + 'main.js',
-    app: BASE_JS + 'app.js',
+    chat: BASE_JS + 'chat.js',
+    video: BASE_JS + 'video.js',
   },
   plugins: [
     new MiniCssExtractPlugin({

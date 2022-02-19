@@ -35,7 +35,7 @@ function handleEnterRoom(event) {
   socket.emit('enter-room', roomName, showRoom);
 }
 
-function handleNicknameSave(event) {
+function handleSaveNickname(event) {
   event.preventDefault();
 
   const nicknameFormInput = nicknameForm.querySelector('input');
@@ -54,6 +54,7 @@ function handelSendMessage(event) {
 
 // socket client api
 socket.on('announce-message', (msg) => {
+  console.log('some one joined !');
   addMessage(`[Announce] ${msg}`);
 });
 
@@ -63,5 +64,5 @@ socket.on('new-message', (msg) => {
 
 // add event listener
 enterForm.addEventListener('submit', handleEnterRoom);
-nicknameForm.addEventListener('submit', handleNicknameSave);
+nicknameForm.addEventListener('submit', handleSaveNickname);
 messageForm.addEventListener('submit', handelSendMessage);

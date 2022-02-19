@@ -16,45 +16,45 @@ const io = SocketIO(server);
 
 const DEFAULT_NICKNAME = 'Anonymous';
 
-io.on('connection', (socket) => {
-  socket['nickname'] = DEFAULT_NICKNAME;
+// io.on('connection', (socket) => {
+//   socket['nickname'] = DEFAULT_NICKNAME;
 
-  socket.onAny((event) => {
-    console.log(`Socket Event: ${event}`);
-  });
+//   socket.onAny((event) => {
+//     console.log(`Socket Event: ${event}`);
+//   });
 
-  socket.on('enter-room', (roomName, showRoom) => {
-    socket.join(roomName);
-    showRoom();
-  });
+//   socket.on('enter-room', (roomName, showRoom) => {
+//     socket.join(roomName);
+//     showRoom();
+//   });
 
-  socket.on('save-nickname', (nickname, roomName, showMessage) => {
-    console.log(socket.nickname, DEFAULT_NICKNAME);
+//   socket.on('save-nickname', (nickname, roomName, showMessage) => {
+//     console.log(socket.nickname, DEFAULT_NICKNAME);
 
-    if (socket.nickname === DEFAULT_NICKNAME) {
-      socket.nickname = nickname;
+//     if (socket.nickname === DEFAULT_NICKNAME) {
+//       socket.nickname = nickname;
 
-      showMessage();
-      socket
-        .to(roomName)
-        .emit('announce-message', `${socket.nickname} has joined.`);
-    } else {
-      socket
-        .to(roomName)
-        .emit(
-          'announce-message',
-          `${socket.nickname} has changed nickname to ${nickname}`,
-        );
+//       showMessage();
+//       socket
+//         .to(roomName)
+//         .emit('announce-message', `${socket.nickname} has joined.`);
+//     } else {
+//       socket
+//         .to(roomName)
+//         .emit(
+//           'announce-message',
+//           `${socket.nickname} has changed nickname to ${nickname}`,
+//         );
 
-      socket.nickname = nickname;
-    }
-  });
+//       socket.nickname = nickname;
+//     }
+//   });
 
-  socket.on('send-message', (message, roomName, addMessage) => {
-    addMessage(`You: ${message}`);
-    socket.to(roomName).emit('new-message', `${socket.nickname}: ${message}`);
-  });
-});
+//   socket.on('send-message', (message, roomName, addMessage) => {
+//     addMessage(`You: ${message}`);
+//     socket.to(roomName).emit('new-message', `${socket.nickname}: ${message}`);
+//   });
+// });
 
 // ws code
 // import WebSocket from 'ws';

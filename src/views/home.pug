@@ -11,9 +11,15 @@ block content
       input(type="text", placeholder="Nickname", required)
       button Save
 
-    form#message
-      ul
-      input(type="text", placeholder="Message", required)
-      button Send
+    section
+      div#myStream
+        video#myFace(autoplay,playsinline, muted, width="400", height="400")
+        button#mute Mute
+        button#camera Turn Camera Off
+
+      //- form#message
+      //-   ul
+      //-   input(type="text", placeholder="Message", required)
+      //-   button Send
 
   script(src="/socket.io/socket.io.js")
