@@ -16,8 +16,13 @@ module.exports = {
   ],
   output: {
     filename: 'js/[name].js',
-    path: path.resolve(__dirname, 'public'),
+    path: path.resolve(__dirname, 'dist'),
     clean: true,
+  },
+  resolve: {
+    alias: {
+      '@': path.join(__dirname, 'src/'),
+    },
   },
   module: {
     rules: [
