@@ -1,3 +1,5 @@
+import 'regenerator-runtime';
+
 import http from 'http';
 import SocketIO from 'socket.io';
 import express from 'express';
@@ -6,7 +8,7 @@ const app = express();
 
 app.set('view engine', 'pug');
 app.set('views', __dirname + '/views');
-app.use('/public', express.static('public'));
+app.use('/dist', express.static('dist'));
 app.get('/', (_, res) => res.render('home'));
 app.get('/404', (_, res) => res.render('NotFound'));
 app.get('/*', (_, res) => res.redirect('/404'));
