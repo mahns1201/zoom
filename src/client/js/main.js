@@ -1,35 +1,16 @@
-import 'regenerator-runtime';
-import '../scss/styles.scss';
-
-const socket = io();
+// import 'regenerator-runtime';
+import '@/scss/styles.scss';
 
 const join = document.querySelector('#join');
 
-// client function'
-function joinRoom() {
-  const a = document.createElement('a');
-  a.href = `/room/${roomName}`;
-  a.click();
-}
-
-// event handler
 function handleJoinRoom(event) {
   event.preventDefault();
 
-  const enterInput = join.querySelector('input');
-  roomName = enterInput.value;
+  const joinRoomInput = join.querySelector('input');
 
-  socket.emit('join_room', roomName, joinRoom);
+  const a = document.createElement('a');
+  a.href = `/room/${joinRoomInput.value}`;
+  a.click();
 }
 
-// add eventListener
 join.addEventListener('submit', handleJoinRoom);
-
-// socket handler
-// socket.on('welcome', async () => {
-//   const offer = await myPeerConnection.createOffer();
-
-//   myPeerConnection.setLocalDescription(offer);
-//   console.log('sent the offer');
-//   socket.emit('offer', offer, roomName);
-// });

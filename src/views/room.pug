@@ -1,0 +1,16 @@
+extends base.pug
+
+block content
+  //- header
+  main
+    section
+      div#myStream
+        video#myFace(autoplay, playsinline, muted, width="400", height="400")
+        button#mute Mute
+        button#camera Turn Camera Off
+        select#cameras
+
+        video#peerFace(autoplay,playsinline, width="400", height="400")
+
+block scripts
+  script(src="/dist/js/video.js")

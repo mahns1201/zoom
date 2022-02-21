@@ -9,23 +9,22 @@ const DEFAULT_NICKNAME = 'Anonymous';
 io.on('connection', (socket) => {
   socket.nickname = DEFAULT_NICKNAME;
 
-  socket.on('join_room', (roomName, joinRoom) => {
+  socket.on('join_room', (roomName) => {
     socket.join(roomName);
-    socket.to(roomName).emit('welcome');
-    joinRoom();
+    socket.to(roomName).emit('welcome', roomName);
   });
 
-  // socket.on('offer', (offer, roomName) => {
-  //   socket.to(roomName).emit('offer', offer);
-  // });
+  socket.on('offer', (offer, roomName) => {
+    socket.to(roomName).emit('offer', offer);
+  });
 
-  // socket.on('answer', (answer, roomName) => {
-  //   socket.to(roomName).emit('answer', answer);
-  // });
+  socket.on('answer', (answer, roomName) => {
+    socket.to(roomName).emit('answer', answer);
+  });
 
-  // socket.on('ice', (ice, roomName) => {
-  //   socket.to(roomName).emit('ice', ice);
-  // });
+  socket.on('ice', (ice, roomName) => {
+    socket.to(roomName).emit('ice', ice);
+  });
 });
 
 export default io;
