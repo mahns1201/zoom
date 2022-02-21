@@ -1,0 +1,18 @@
+section > form#join {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  input {
+    width: 30vw;
+    height: 2rem;
+    border-radius: 0px;
+  }
+  button {
+    width: 30vw;
+    height: 1.5rem;
+    border-radius: 0px;
+  }
+}
