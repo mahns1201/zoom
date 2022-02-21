@@ -4,6 +4,6 @@ import { room } from '../controllers/roomController';
 
 const homeRouter = express.Router();
 
-homeRouter.get('/:id', room);
+homeRouter.get('/:name', room);
 
 export default homeRouter;
