@@ -1,0 +1,18 @@
+.layout__room {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(2, 45vh);
+  gap: 20px;
+  .video {
+    position: relative;
+
+    .button {
+      position: absolute;
+      bottom: 5px;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: center;
+    }
+  }
+}
