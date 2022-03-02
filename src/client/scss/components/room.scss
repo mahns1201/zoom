@@ -3,9 +3,9 @@
   grid-template-columns: 1fr;
   grid-template-rows: repeat(2, 45vh);
   gap: 20px;
+  padding: 1rem 0px;
   .video {
     position: relative;
-
     .button {
       position: absolute;
       bottom: 5px;
