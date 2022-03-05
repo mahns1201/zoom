@@ -8,6 +8,7 @@ module.exports = {
     main: BASE_JS + 'main.js',
     chat: BASE_JS + 'chat.js',
     video: BASE_JS + 'video.js',
+    header: BASE_JS + 'header.js',
   },
   plugins: [
     new MiniCssExtractPlugin({
