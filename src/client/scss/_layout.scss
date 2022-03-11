@@ -1,0 +1,36 @@
+@import './_variables';
+
+// ~767px
+@mixin sm {
+  @media (max-width: #{$md - 1px}) {
+    @content;
+  }
+}
+
+// 768px ~ 1023px
+@mixin md {
+  @media (min-width: #{$md}) and (max-width: #{$lg - 1px}) {
+    @content;
+  }
+}
+
+// 1024px ~ 1439px
+@mixin lg {
+  @media (min-width: #{$lg}) and (max-width: #{$xl - 1px}) {
+    @content;
+  }
+}
+
+// 1440px ~ 1727px
+@mixin xl {
+  @media (min-width: #{$xl}) and (max-width: #{$xxl - 1px}) {
+    @content;
+  }
+}
+
+// 1728px ~
+@mixin xxl {
+  @media (min-width: #{$xxl}) {
+    @content;
+  }
+}
