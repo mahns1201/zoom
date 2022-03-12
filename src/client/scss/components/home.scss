@@ -1,3 +1,5 @@
+@import '../layout.scss';
+
 section > form#join {
   height: calc(100vh - 70px);
   display: flex;
@@ -9,10 +11,16 @@ section > form#join {
     width: 25%;
     height: 2rem;
     border-radius: 0px;
+    @include sm {
+      width: 90%;
+    }
   }
   button {
     width: 25%;
     height: 1.5rem;
     border-radius: 0px;
+    @include sm {
+      width: 90%;
+    }
   }
 }
